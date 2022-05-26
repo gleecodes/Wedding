@@ -1,0 +1,39 @@
+@model List<Wedding>
+
+<div class="jumbotron text-center bg-dark">
+    <h1 class="display-5 text-warning">Welcome to the Wedding Planner!</h1>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Wedding</th>
+            <th scope="col">Date</th>
+            <th scope="col">Guest</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+        @{
+            foreach (Wedding wedding in Model){
+                <tr>
+                    <th scope ="row"><a href="/wedding/@wedding.WeddingId">@wedding.Wedder_1 & @wedding.Wedder_2</a></th>
+                    <td>@wedding.Date</td>
+                    <td>@wedding.GuestCount</td>
+                    @{if (!ViewBag.CreatedWeddings.Contains(wedding)){
+                        if(!ViewBag.WeddingList.Contains(wedding)){
+                            <td><a href="/wedding/@wedding.WeddingId/RSVP">RSVP</a></td>
+                        }else{
+                            <td><a href="/wedding/@wedding.WeddingId/Un-RSVP">Un-RSVP</a></td>
+                        }
+                    } else{
+                        <td><a href="/wedding/delete/@wedding.WeddingId">Delete</a></td>
+                    }}
+                </tr>
+            }
+        }
+</table>
+
+
+
+<br><br><br><a href="/wedding/new" class="btn btn-warning">New Wedding</a>

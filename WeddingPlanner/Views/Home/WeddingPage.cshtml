@@ -1,0 +1,21 @@
+@model Wedding
+
+
+<div class="jumbotron">
+    <h1>@Model.Wedder_1 and @Model.Wedder_2's Wedding</h1>
+</div>
+
+<h3>@Model.Date</h3>
+
+<h2>Guests:</h2>
+    <ul>
+         
+        @foreach (RSVP rsvp in Participants){
+
+            <li>@rsvp.User.FirstName @rsvp.User.LastName</li>
+        }
+        
+    </ul>
+
+
+
